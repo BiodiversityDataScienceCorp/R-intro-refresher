@@ -1,5 +1,5 @@
 ---
-title: "Intro to R, fall 2020"
+title: "R Introduction/Refresher, January 2022"
 output:
   pdf_document: default
   html_notebook: default
@@ -7,10 +7,7 @@ output:
     df_print: paged
 ---
 
-# Intro to R workshop
-
-### Watzek Library Digital Initiatives
-### October 16th, 2020
+# R Introduction/Refresher, January 2022
 
 
 ### Goals of this workshop:
@@ -18,9 +15,11 @@ output:
 * Gain some familiarity with RStudio Server
 * Write some basic R code
 * Work with a data set
+* Functions
 
 
 Before diving in, you might be wondering what's up with the weird syntax of this document. It's "R Markdown", which is a shorthand for creating formatted text in documents. One of the neat things about R Notebooks (like this document) is that you can "knit" it to an output like PDF or HTML. To get a sneak peek, click on the down arrow next to the "Knit" menu above, and select "Knit to PDF" (you may have to disable your browser's popup blocker). The resulting document is a mix of formatted text, code samples, and outputs from those code samples. This feature is pretty spiffy for creating tutorials, reports, etc. in which R code and output is used.
+
 
 
 ### Basic R code
