@@ -167,6 +167,18 @@ Then, write some R code to call the function, passing it some temperature value,
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 #### Statistical Functions
 
 Let's start with the "c" function. "c" stands for "combine", and is used to create a one-dimensional array of values (also known as a "vector"). You could also think of this as a column of data from a spreadsheet.
