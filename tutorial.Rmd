@@ -113,7 +113,7 @@ Now let's say we want to know the average number of pets owned by Watzek staff. 
 avgPets<-mean(watzekPets)
 
 avgPets
-
+ 
 ```
 
 
