@@ -14,15 +14,16 @@ output:
 
 * Gain some familiarity with RStudio Server
 * Write some basic R code
-* Work with a data set
 * Functions
+* Work with a data set
+
 
 
 Before diving in, you might be wondering what's up with the weird syntax of this document. It's "R Markdown", which is a shorthand for creating formatted text in documents. One of the neat things about R Notebooks (like this document) is that you can "knit" it to an output like PDF or HTML. To get a sneak peek, click on the down arrow next to the "Knit" menu above, and select "Knit to PDF" (you may have to disable your browser's popup blocker). The resulting document is a mix of formatted text, code samples, and outputs from those code samples. This feature is pretty spiffy for creating tutorials, reports, etc. in which R code and output is used.
 
 
 
-### Basic R code
+## Basic R code
 
 R code can be run in the console, or as a "code chunk" within this R notebook. Below is a code chunk. You can run the code chunk by clicking the green "play" button.
 
@@ -32,21 +33,21 @@ R code can be run in the console, or as a "code chunk" within this R notebook. B
 
 Throughout this workshop, there will be a mix of code chunks pre-populated with code, and empty code chunks. The empty code chunks give you an opportunity to write code, run it, and see the output. Each of the empty chunks are preceded with "YOUR TURN:".
 
-#### Assigning variables
+### Assigning variables
 
 Creating variables in R isn't so bad. Most scripting languages use the "=" sign, but R uses "<-". So below, I'm creating a variable x, and setting it equal to 10. Afterward, I entered "x", which should output the value of x:
 
 ```{r}
+
+#Anything preceded by a "#" is a "comment". It does not get executed as code.
+#Comments can be super helpful to provide info on your code.
+
 # assigns 10 to x
 x<-10
 
 # prints x
 x
 
-
-
-#Anything preceded by a "#" is a "comment". It does not get executed as code.
-#Comments can be super helpful to provide info on your code.
 
 
 ```
@@ -60,8 +61,25 @@ Now try creating a variable "y", set it equal to 7+9, and then print it out:
 ```
 
 
+### Vectors (aka "Arrays")
 
-#### Functions
+Vectors are a type of data structure in R, usually referring to an array of values. To create a vector, you use the "c" function:
+
+```{r}
+myFirstVector<-c(1,2,3,4,5)
+#print myFirstVector
+myFirstVector
+```
+
+Now it's your turn. Create a vector named "vector", and have it contain the values 30, 20, 40, 15, and 50.
+
+```{r}
+#enter your code here
+```
+
+
+
+## Functions
 
 Like most languages, R has functions that help you quickly execute common tasks. Functions typically take the form of:
 
@@ -88,6 +106,65 @@ help(sqrt)
 ```
 
 The documentation appears in the lower right window in the "help" tab.
+
+
+### Creating your own functions
+
+It is very common in programming to write your own functions to accomplish specific tasks. This can help keep your code organized, and also set the stage for keeping your overall code shorter (e.g. you can write a function and call it as many times as you need, rather than rewriting the same code over and over).
+
+A good rule of thumb for functions is to keep them simple - they should generally accomplish one main thing. You can also send as many arguments as you need to accomplish the task of the function. Also, make sure you add comments to remind your future self (or group members) what is happening.
+
+Here's an example:
+
+```{r}
+
+# function for converting farenheit to Kelvin
+# fTemp is temp in farenheit
+farenheitToKelvin<-function(fTemp){
+  
+  # calculate kelvin using the conversion formula
+  kelvin<-(fTemp - 32)*5/9 + 273.15
+  
+  # this sends the variable "kelvin" back to the code that called it
+  return (kelvin)
+  
+}
+
+
+
+```
+
+
+Running the code above doesn't do anything obvious, other than register the function to our R environment. Now we can use it:
+
+```{r}
+
+# Here I'm creating a variable tempKelvin, and setting it equal to the returned value from the function.
+# I'm using "60" as my argument. So I'm asking the function to covert 60F to Kelvin
+tempKelvin<-farenheitToKelvin(60)
+
+# prints out the result
+tempKelvin
+
+
+```
+
+
+YOUR TURN:
+In the chunk below, create a function called farenheitToCelsius. The function should: 
+* accept one argument (temperature in Farenheit, named something fairly clear)
+* run the calulation to convert farenheit to celsius, and assign the result to a variable
+* return the variable to the calling function
+* use comments where appropriate!
+
+Then, write some R code to call the function, passing it some temperature value, and print it out. 
+```{r}
+
+
+
+
+
+```
 
 
 #### Statistical Functions
