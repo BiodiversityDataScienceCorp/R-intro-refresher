@@ -171,89 +171,53 @@ Then, write some R code to call the function, passing it some temperature value,
 
 
 
+## Working with Data
 
+### Built-in datasets.
+R has a number of built-in data sets, many of which are great for gaining some practice with getting your feet wet with R. 
 
-
-
-
-
-
-
-#### Statistical Functions
-
-Let's start with the "c" function. "c" stands for "combine", and is used to create a one-dimensional array of values (also known as a "vector"). You could also think of this as a column of data from a spreadsheet.
 
 ```{r}
-# I polled my coworkers at Watzek Library to see how many pets were in each household:
-watzekPets<-c(1, 1, 2, 3, 2, 0, 1, 1, 1, 0, 0)
+# This command will show the available built-in data sets currently loaded with "base R"
+data()
+```
 
-#print it out
-watzekPets
+We can learn more about a specific dataset by using the "?" command. We can also take a look at the data by using the "head" command on the dataset, or just priting the dataset:
 
 
-
+```{r}
+# Displays more info about "mtcars" in the help window
+?mtcars
+# Displays structure and first 6 rows
+head(mtcars)
+#Displays entire dataset
+mtcars
 ```
 
 
-Now let's say we want to know the average number of pets owned by Watzek staff. For this, we can use the mean function:
+Datasets can also be included with some libraries/packages. Let's load the tidyverse, and then run the data() command again:
+
+NOTE: typically packages need to be installed before they are loaded. In this case, we've pre-installed the tidyverse. If you need to install a package you want to use, typically you would run this code:
+
+install.packages("nameOfPackage")
+library(nameOfPackage)
+
+Notice quotes are needed in the first command, but not the second.
+
 
 ```{r}
-
-avgPets<-mean(watzekPets)
-
-avgPets
-  
+# The "tidyverse" is a series of packages used frequently in data science
+library(tidyverse)
+data()
 ```
-
-
-
-
-
-We can also determine the standard deviation of our data. Standard Deviation is a measure of how spread apart the measurements are. 
-
-```{r}
-sdPets<-sd(watzekPets)
-
-#print it out
-sdPets
-```
-
-For comparison's sake, run the code sample below on a dataset of measurements that vary much more widely:
-
-```{r}
-
-#pretend dataset of current coins in your pocket of Watzek staff:
-
-watzekCoins<-c(2, 10, 15, 5, 2, 0, 11, 600, 25)
-
-#print average number of coins
-mean(watzekCoins)
-
-#print standard deviation of watzekCoins
-sd(watzekCoins)
-
-
-
-```
-
-
-
-
 
 
 
 YOUR TURN:
-In the code chunk below, create an array called myArray, and set it equal to 3, 7, 8.5, 20, 4, 1, and 15. Print out the mean and standard deviation.
+Install and load the "palmerpenguins" package, and take a look at the included dataset(s). How might you find out what they are?
+
 
 ```{r}
-
-# define myArray:
-
-
-#print mean:
-
-
-#print standard deviation:
 
 
 
@@ -263,104 +227,44 @@ In the code chunk below, create an array called myArray, and set it equal to 3, 
 
 
 
-### Working with a Data Set
+### Loading data from the files area
 
+Each user on our RStudio Server instance has a home directory, where you can keep various files, R Projects, etc. You can view your files in the lower right-hand window, under the "Files" tab.
 
-Before working with data, let's quickly talk about packages and libraries in R. While some functions are built in with R (e.g. sqrt), others require users to install packages. A **package** is just a collection of functions, while a **library** is the location of where that package lives.    
+You should see a file called "multco.csv", which has some raw population numbers for Multnomah County, Oregon over the last several years (data from data.census.gov). Below, you can use the "read_csv" function to open a dataset, and assign it to a variable (in this case, "multco"):
 
-In R, there's a special package called the "Tidyverse". The Tidyverse is actually a collection of smaller packages that provide functions for reading, filtering, and cleaning data. It also includes "ggplot", which is used heavily for data visualizations. We'll use some of the functions in the Tidyverse, so we need to load them. Run the code chunk below:
 
 
 ```{r}
-library(tidyverse)
+# The "read_csv" function is part of the "readr" package, which is part of the tidyverse.
+multCo<-read_csv("multco.csv")
+multCo
 ```
 
-
-Let's now load a csv file. Attaching in your workspace is a file named "orbdata2013.csv". This file contains spider data collected by Lewis & Clark students in 2013. You can also load csv files into your "Files" section in the lower-right area. Simply click the "Upload" button, and select a file from your computer.
-
-
-We can load this into our R environment by using the read_csv function:
-
-```{r}
-orbData13<-read_csv("orbdata2013.csv")
-```
-
-The variable "orbData13" now contains the full csv file in "tibble" format. A "tibble" is a type of dataset format used frequently in R, particularly with filtering, manipulating, and plotting data. In the code chunk below, enter and run "orbData13" to see the basic structure of the tibble:
-
-
-```{r}
-orbData13
-```
-
-
-The output above is pretty handy, as you can click the arrows across the top to see the column headings, and use the navigation at the bottom to view more rows.
-
-Let's say were interested in the average orb height from the data. You can create an array of values by targeting a column from the tibble by using the "$" between the tibble variable and columns:
+YOUR TURN:
+Notice there is also a file called "pimaco.csv". Similarly, this dataset shows raw population numbers from Pima County, Arizona over the last several years (data from data.census.gov). Load the data, setting it equal to a variable pimaCo
 
 ```{r}
 
-# notice the column name is contained in quotes. 
-heights<-orbData13$`Orb height (cm)`
+pimaCo<-read_csv("pimaco.csv")
+pimaCo
 
-#print heights
-heights
-
-```
-
-
-Now let's find the average, using the "mean" function, as we did earlier:
-
-
-```{r}
-
-avgHeight<-mean(heights)
-
-avgHeight
-
-
-```
-
-....except, it doesn't work! That's beacuse there are some non-numeric values in the array (denoted "NA"). This is not an uncommon problem, as data isn't always perfect, and often needs some clean up. Fortunately R can help in this case, with the "na.omit" function. This strips out values of "NA":
-
-```{r}
-
-cleanedHeights<-na.omit(heights)
-
-cleanedHeights
-
-```
-
-
-
-Now that the data is cleaned up, we can get the average:
-
-```{r}
-
-avgHeights<-mean(cleanedHeights)
-
-avgHeights
 
 
 ```
 
 
-Now it's your turn. Can you find the mean and standard deviation of the "orb width(cm)" column?
+### Merging data sets
+
+There may be situations in which you want to combine data sets. Let's combine our two county data sets using the rbind() function (this is the function to use when column headings are the same):
+
+
 
 ```{r}
 
-# Create a variable that targets a column
+counties<-rbind(multCo, pimaCo)
 
-
-
-# Strip out NA values if necessary
-
-
-
-
-# Determine/print mean & standard deviation
-
-
-
+counties
 
 ```
 
@@ -368,16 +272,7 @@ Now it's your turn. Can you find the mean and standard deviation of the "orb wid
 
 
 
-For the weekend:
 
-Download the csv version of the class data here: http://watzek.lclark.edu/orb20.csv
-Load the file into the Files area (click "Upload", and select the csv file from your computer). 
-Use the techniques learned above to determine the mean of a column of data.
-
-
-Need help?
-Email Jeremy at jeremym@lclark.edu
-Jeremy is also hosting R office hours from 3-4pm on Thursdays: https://zoom.us/j/6475828456
 
 
 
