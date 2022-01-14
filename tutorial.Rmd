@@ -19,7 +19,7 @@ output:
 
 
 
-Before diving in, you might be wondering what's up with the weird syntax of this document. It's "R Markdown", which is a shorthand for creating formatted text in documents. One of the neat things about R Notebooks (like this document) is that you can "knit" it to an output like PDF or HTML. Once you run through all the code in this 
+Before diving in, you might be wondering what's up with the weird syntax of this document. It's "R Markdown", which is a shorthand for creating formatted text in documents. One of the neat things about R Notebooks (like this document) is that you can "knit" it to an output like PDF or HTML. Once you run through all the code in this exercise, click the "Knit" button above, and take a look at the output. 
 
 
 ## Basic R code
@@ -269,9 +269,22 @@ counties
 
 
 
+### some data wrangling (in prep for plotting)
+
+--split date column
+--make sure new date columm is of date type 
+--remove 2 rows (pop est base for each county)
 
 
 
+### plotting
 
+--use county data to plot line graphs for both counties over time
+--maybe same w/bar graphs?
+--maybe use filter to create subset, for either single county, or for a particular year
+
+
+### workflow?
+--using .R files
 
 
