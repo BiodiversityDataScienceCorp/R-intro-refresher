@@ -19,8 +19,7 @@ output:
 
 
 
-Before diving in, you might be wondering what's up with the weird syntax of this document. It's "R Markdown", which is a shorthand for creating formatted text in documents. One of the neat things about R Notebooks (like this document) is that you can "knit" it to an output like PDF or HTML. To get a sneak peek, click on the down arrow next to the "Knit" menu above, and select "Knit to PDF" (you may have to disable your browser's popup blocker). The resulting document is a mix of formatted text, code samples, and outputs from those code samples. This feature is pretty spiffy for creating tutorials, reports, etc. in which R code and output is used.
-
+Before diving in, you might be wondering what's up with the weird syntax of this document. It's "R Markdown", which is a shorthand for creating formatted text in documents. One of the neat things about R Notebooks (like this document) is that you can "knit" it to an output like PDF or HTML. Once you run through all the code in this 
 
 
 ## Basic R code
