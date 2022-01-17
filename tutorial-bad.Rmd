@@ -1,0 +1,300 @@
+---
+title: "R Introduction/Refresher, January 2022"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document:
+    df_print: paged
+---
+
+# R Introduction/Refresher, January 2022
+
+
+### Goals of this workshop:
+
+* Gain some familiarity with RStudio Server
+* Write some basic R code
+* Functions
+* Work with a data set
+* wrangling
+* plotting
+
+add learning outcomes!
+* what is a vector, why is it useful
+
+
+
+Before diving in, you might be wondering what's up with the weird syntax of this document. It's "R Markdown", which is a shorthand for creating formatted text in documents. One of the neat things about R Notebooks (like this document) is that you can "knit" it to an output like PDF or HTML. Once you run through all the code in this exercise, click the "Knit" button above, and take a look at the output. 
+
+
+## Basic R code
+
+R code can be run in the console, or as a "code chunk" within this R notebook. Below is a code chunk. You can run the code chunk by clicking the green "play" button.
+
+```{r}
+2+2
+```
+
+Throughout this workshop, there will be a mix of code chunks pre-populated with code, and empty code chunks. The empty code chunks give you an opportunity to write code, run it, and see the output. Each of the empty chunks are preceded with "YOUR TURN:".
+
+### Assigning variables
+
+Creating variables in R isn't so bad. Most scripting languages use the "=" sign, but R uses "<-". So below, I'm creating a variable x, and setting it equal to 10. Afterward, I entered "x", which should output the value of x:
+
+```{r}
+
+#Anything preceded by a "#" is a "comment". It does not get executed as code.
+#Comments can be super helpful to provide info on your code.
+
+# assigns 10 to x
+x<-10
+
+# prints x
+x
+
+
+
+```
+
+
+YOUR TURN:
+Now try creating a variable "y", set it equal to 7+9, and then print it out:
+```{r}
+
+
+```
+
+
+### Vectors (aka "Arrays")
+
+Vectors are a type of data structure in R, usually referring to an array of values. To create a vector, you use the "c" function:
+
+```{r}
+myFirstVector<-c(1,2,3,4,5)
+#print myFirstVector
+myFirstVector
+```
+
+Now it's your turn. Create a vector named "vector", and have it contain the values 30, 20, 40, 15, and 50.
+
+```{r}
+#enter your code here
+
+
+
+```
+
+
+
+## Functions
+
+Like most languages, R has functions that help you quickly execute common tasks. Functions typically take the form of:
+
+functionName(argument1, argument2, etc....)
+
+For example, the function sqrt(number) takes the square root of a number:
+
+```{r}
+sqrt(9)
+```
+
+
+YOUR TURN:
+In the chunk below, create a variable 'z', set it equal to the square root of 90, and print it out:
+```{r}
+
+
+```
+
+One nice thing about RStudio Server is that you can readily access documentation for functions by using the "help" command:
+
+```{r}
+help(sqrt)
+```
+
+The documentation appears in the lower right window in the "help" tab.
+
+
+### Creating your own functions
+
+It is very common in programming to write your own functions to accomplish specific tasks. This can help keep your code organized, and also set the stage for keeping your overall code shorter (e.g. you can write a function and call it as many times as you need, rather than rewriting the same code over and over).
+
+A good rule of thumb for functions is to keep them simple - they should generally accomplish one main thing. You can also send as many arguments as you need to accomplish the task of the function. Also, make sure you add comments to remind your future self (or group members) what is happening.
+
+Here's an example:
+
+```{r}
+
+# function for converting farenheit to Kelvin
+# fTemp is temp in farenheit
+farenheitToKelvin<-function(fTemp){
+  
+  # calculate kelvin using the conversion formula
+  kelvin<-(fTemp - 32)*5/9 + 273.15
+  
+  # this sends the variable "kelvin" back to the code that called it
+  return (kelvin)
+  
+}
+
+
+
+```
+
+
+Running the code above doesn't do anything obvious, other than register the function to our R environment. Now we can use it:
+
+```{r}
+
+# Here I'm creating a variable tempKelvin, and setting it equal to the returned value from the function.
+# I'm using "60" as my argument. So I'm asking the function to covert 60F to Kelvin
+tempKelvin<-farenheitToKelvin(60)
+
+# prints out the result
+tempKelvin
+
+
+```
+
+
+YOUR TURN:
+In the chunk below, create a function called farenheitToCelsius. The function should: 
+* accept one argument (temperature in Farenheit, named something fairly clear)
+* run the calulation to convert farenheit to celsius, and assign the result to a variable
+* return the variable to the calling function
+* use comments where appropriate!
+
+Then, write some R code to call the function, passing it some temperature value, and print it out. 
+```{r}
+
+
+
+
+
+```
+
+
+
+
+
+
+## Working with Data
+
+### Built-in datasets.
+R has a number of built-in data sets, many of which are great for gaining some practice with getting your feet wet with R. 
+
+
+```{r}
+# This command will show the available built-in data sets currently loaded with "base R"
+data()
+```
+
+We can learn more about a specific dataset by using the "?" command. We can also take a look at the data by using the "head" command on the dataset, or just priting the dataset:
+
+
+```{r}
+# Displays more info about "mtcars" in the help window
+?mtcars
+# Displays structure and first 6 rows
+head(mtcars)
+#Displays entire dataset
+mtcars
+```
+
+
+Datasets can also be included with some libraries/packages. Let's load the tidyverse, and then run the data() command again:
+
+NOTE: typically packages need to be installed before they are loaded. In this case, we've pre-installed the tidyverse. If you need to install a package you want to use, typically you would run this code:
+
+install.packages("nameOfPackage")
+library(nameOfPackage)
+
+Notice quotes are needed in the first command, but not the second.
+
+
+```{r}
+# The "tidyverse" is a series of packages used frequently in data science
+library(tidyverse)
+data()
+```
+
+
+
+YOUR TURN:
+Install and load the "palmerpenguins" package, and take a look at the included dataset(s). How might you find out what they are?
+
+
+```{r}
+
+
+
+
+```
+
+
+
+
+### Loading data from the files area
+
+Each user on our RStudio Server instance has a home directory, where you can keep various files, R Projects, etc. You can view your files in the lower right-hand window, under the "Files" tab.
+
+You should see a file called "multco.csv", which has some raw population numbers for Multnomah County, Oregon over the last several years (data from data.census.gov). Below, you can use the "read_csv" function to open a dataset, and assign it to a variable (in this case, "multco"):
+
+
+(add google sheet download/upload example)
+
+
+
+```{r}
+# The "read_csv" function is part of the "readr" package, which is part of the tidyverse.
+multCo<-read_csv("multco.csv")
+multCo
+```
+
+YOUR TURN:
+Notice there is also a file called "pimaco.csv". Similarly, this dataset shows raw population numbers from Pima County, Arizona over the last several years (data from data.census.gov). Load the data, setting it equal to a variable pimaCo
+
+```{r}
+
+pimaCo<-read_csv("pimaco.csv")
+pimaCo
+
+
+
+```
+
+
+### Merging data sets
+
+There may be situations in which you want to combine data sets. Let's combine our two county data sets using the rbind() function (this is the function to use when column headings are the same):
+
+
+
+```{r}
+
+counties<-rbind(multCo, pimaCo)
+
+counties
+
+```
+
+
+
+### some data wrangling (in prep for plotting)
+
+--split date column
+--make sure new date columm is of date type 
+--remove 2 rows (pop est base for each county)
+
+
+
+### plotting
+
+--use county data to plot line graphs for both counties over time
+--maybe same w/bar graphs?
+--maybe use filter to create subset, for either single county, or for a particular year
+
+
+
+
+

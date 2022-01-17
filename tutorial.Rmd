@@ -1,28 +1,29 @@
 ---
 title: "R Introduction/Refresher, January 2022"
+subtitle: "Jeremy McWilliams" # change this!
+date: "January 18th, 2022"
 output:
   pdf_document: default
-  html_notebook: default
-  html_document:
-    df_print: paged
+
 ---
+
+add page header with info here
 
 # R Introduction/Refresher, January 2022
 
-
-### Goals of this workshop:
-
-* Gain some familiarity with RStudio Server
-* Write some basic R code
-* Functions
-* Work with a data set
-
+### Learning outcomes:
+* Know how to assign a variable in R.
+* Understand what a vector is in R.
+* Use the "library" function to load packages.
+* Become familiar with functions and arguments, where to find them, and how to get help.
+* Understand how to load external data into rstudio.cloud, and assign it to a variable in R.
+* Know the syntax for accessing a column of data as a vector.
 
 
 Before diving in, you might be wondering what's up with the weird syntax of this document. It's "R Markdown", which is a shorthand for creating formatted text in documents. One of the neat things about R Notebooks (like this document) is that you can "knit" it to an output like PDF or HTML. Once you run through all the code in this exercise, click the "Knit" button above, and take a look at the output. 
 
 
-## Basic R code
+### Basic R code
 
 R code can be run in the console, or as a "code chunk" within this R notebook. Below is a code chunk. You can run the code chunk by clicking the green "play" button.
 
@@ -60,6 +61,19 @@ Now try creating a variable "y", set it equal to 7+9, and then print it out:
 ```
 
 
+
+YOUR TURN:
+Create a variable "numButterflies", set it equal to 500, and print it out:
+
+```{r}
+
+
+
+```
+
+
+
+
 ### Vectors (aka "Arrays")
 
 Vectors are a type of data structure in R, usually referring to an array of values. To create a vector, you use the "c" function:
@@ -70,10 +84,13 @@ myFirstVector<-c(1,2,3,4,5)
 myFirstVector
 ```
 
-Now it's your turn. Create a vector named "vector", and have it contain the values 30, 20, 40, 15, and 50.
+Now it's your turn. Create a vector named "observations", and have it contain the values 30, 20, 40, 15, and 50.
 
 ```{r}
 #enter your code here
+
+
+
 ```
 
 
@@ -107,59 +124,17 @@ help(sqrt)
 The documentation appears in the lower right window in the "help" tab.
 
 
-### Creating your own functions
-
-It is very common in programming to write your own functions to accomplish specific tasks. This can help keep your code organized, and also set the stage for keeping your overall code shorter (e.g. you can write a function and call it as many times as you need, rather than rewriting the same code over and over).
-
-A good rule of thumb for functions is to keep them simple - they should generally accomplish one main thing. You can also send as many arguments as you need to accomplish the task of the function. Also, make sure you add comments to remind your future self (or group members) what is happening.
-
-Here's an example:
-
-```{r}
-
-# function for converting farenheit to Kelvin
-# fTemp is temp in farenheit
-farenheitToKelvin<-function(fTemp){
-  
-  # calculate kelvin using the conversion formula
-  kelvin<-(fTemp - 32)*5/9 + 273.15
-  
-  # this sends the variable "kelvin" back to the code that called it
-  return (kelvin)
-  
-}
+The internet in general is also an excellent source for getting help with R functions. Not only can you find examples and documentation on functions, but it's also a great way to determine what functions exist. 
 
 
-
-```
-
-
-Running the code above doesn't do anything obvious, other than register the function to our R environment. Now we can use it:
-
-```{r}
-
-# Here I'm creating a variable tempKelvin, and setting it equal to the returned value from the function.
-# I'm using "60" as my argument. So I'm asking the function to covert 60F to Kelvin
-tempKelvin<-farenheitToKelvin(60)
-
-# prints out the result
-tempKelvin
-
-
-```
-
+include sd example
 
 YOUR TURN:
-In the chunk below, create a function called farenheitToCelsius. The function should: 
-* accept one argument (temperature in Farenheit, named something fairly clear)
-* run the calulation to convert farenheit to celsius, and assign the result to a variable
-* return the variable to the calling function
-* use comments where appropriate!
+Lets say you want to calculate the average of the vector "observations" you just created, but aren't sure how. Try googling "how do I calculate the average in R". Based on what you find, calculate the average of "observations", and print it to the screen:
+(share where people end up on google)
 
-Then, write some R code to call the function, passing it some temperature value, and print it out. 
 ```{r}
-
-
+# hint: once you find the right function, you'll use "observations" as your argument
 
 
 
@@ -172,57 +147,11 @@ Then, write some R code to call the function, passing it some temperature value,
 
 ## Working with Data
 
-### Built-in datasets.
-R has a number of built-in data sets, many of which are great for gaining some practice with getting your feet wet with R. 
-
+Before loading data, we're first going to load a library called the "tidyverse". We're doing this because we're about to use the "read_csv" function, which is only available once the tidyverse is loaded (we know this from googling). 
 
 ```{r}
-# This command will show the available built-in data sets currently loaded with "base R"
-data()
-```
-
-We can learn more about a specific dataset by using the "?" command. We can also take a look at the data by using the "head" command on the dataset, or just priting the dataset:
-
-
-```{r}
-# Displays more info about "mtcars" in the help window
-?mtcars
-# Displays structure and first 6 rows
-head(mtcars)
-#Displays entire dataset
-mtcars
-```
-
-
-Datasets can also be included with some libraries/packages. Let's load the tidyverse, and then run the data() command again:
-
-NOTE: typically packages need to be installed before they are loaded. In this case, we've pre-installed the tidyverse. If you need to install a package you want to use, typically you would run this code:
-
-install.packages("nameOfPackage")
-library(nameOfPackage)
-
-Notice quotes are needed in the first command, but not the second.
-
-
-```{r}
-# The "tidyverse" is a series of packages used frequently in data science
 library(tidyverse)
-data()
 ```
-
-
-
-YOUR TURN:
-Install and load the "palmerpenguins" package, and take a look at the included dataset(s). How might you find out what they are?
-
-
-```{r}
-
-
-
-
-```
-
 
 
 
@@ -230,61 +159,91 @@ Install and load the "palmerpenguins" package, and take a look at the included d
 
 Each user on our RStudio Server instance has a home directory, where you can keep various files, R Projects, etc. You can view your files in the lower right-hand window, under the "Files" tab.
 
-You should see a file called "multco.csv", which has some raw population numbers for Multnomah County, Oregon over the last several years (data from data.census.gov). Below, you can use the "read_csv" function to open a dataset, and assign it to a variable (in this case, "multco"):
+You should see a file called "monarchsArizona.csv". This is a data set exported from iNaturalist containing research-level Monarch butterly observations in Arizona during 2021 (source - iNaturalist export tool https://www.inaturalist.org/observations/export)
+
+Below, you can use the "read_csv" function to open a dataset, and assign it to a variable (in this case, "mmonarchsAz"):
+
 
 
 
 ```{r}
 # The "read_csv" function is part of the "readr" package, which is part of the tidyverse.
-multCo<-read_csv("multco.csv")
-multCo
+monarchsAz<-read_csv("monarchsArizona.csv")
+monarchsAz
 ```
+
+
+
+
+### Loading external data from Google Sheets
+
+The following URL contains iNaturalist data of all research-grade butterfly observations in Oregon for 2021 (source: iNaturalist export tool):
+
+https://docs.google.com/spreadsheets/d/1FeFA2Sp2MkXbMthNqxHKh1S3-BPEpkfIRFPob1pDFns/edit?usp=sharing
+
 
 YOUR TURN:
-Notice there is also a file called "pimaco.csv". Similarly, this dataset shows raw population numbers from Pima County, Arizona over the last several years (data from data.census.gov). Load the data, setting it equal to a variable pimaCo
+Perform the following steps to load the data set into rstudio.cloud, and examine the data by assigning it to a variable and display it to the screen:
+
+* Visit https://docs.google.com/spreadsheets/d/1FeFA2Sp2MkXbMthNqxHKh1S3-BPEpkfIRFPob1pDFns/edit?usp=sharing
+* In the File menu, select Download, and select Comma Separated Values. This will download the file to your computer.
+* In rstudio.cloud, in the Files tab of the lower-right window, click 'Upload'.
+* Click 'Choose File', and find the downloaded file on your computer (click 'Open', then 'Ok').
+* The file should now appear in your Files area. 
+* In the code chunk below, use the read_csv function to assign the data set to a variable, and then print the data to tbe screen (hint: prior to writing any code, you might consider renaming the file to something simple, by clicking the checkbok next to the file, and clicking 'Rename'):
 
 ```{r}
 
-pimaCo<-read_csv("pimaco.csv")
-pimaCo
+
+
 
 
 
 ```
 
 
-### Merging data sets
+### Accessing a column of data
 
-There may be situations in which you want to combine data sets. Let's combine our two county data sets using the rbind() function (this is the function to use when column headings are the same):
+There will likely be cases where you want to isolate a column of data to perform some calculation on it. Fortunately you can do this pretty easily, using the "$" operator. The sytax is:
+
+dataSet$columnName
+
+For example, let's say were interested in getting the "num_identification_agreements" column from the monarchsAz data set. The following code let's us do it:
+
+```{r}
+# 
+numIdAg<-monarchsAz$num_identification_agreements
 
 
+numIdAg
+
+
+```
+
+We just created a vector of data, which we could theoretically then use to do other calculations (mean, standard deviation, etc.)
+
+
+YOUR TURN:
+
+Use the Oregon butterly data set you loaded, and create a variable equal to the column "num_identification_disagreements". Display it to the screen.
 
 ```{r}
 
-counties<-rbind(multCo, pimaCo)
 
-counties
+
 
 ```
 
 
+Knitted pdf - flush out, be clear about deliverable. naming conventions! And add name at top. 
 
-### some data wrangling (in prep for plotting)
+assignment1-lastname.pdf
 
---split date column
---make sure new date columm is of date type 
---remove 2 rows (pop est base for each county)
+Due date: midnight on Monday, January 24th 
 
+add readme on assignments, naming conventions, where to turn in,etc
 
+That's it for today. If you need any help, please feel free to reach out to Jeremy at jeremym@lclark.edu.
 
-### plotting
-
---use county data to plot line graphs for both counties over time
---maybe same w/bar graphs?
---maybe use filter to create subset, for either single county, or for a particular year
-
-
-### workflow?
---using .R files
 
 
