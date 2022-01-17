@@ -14,6 +14,7 @@ January 18th, 2022
 
 ## R Introduction/Refresher, January 2022
 
+
 ### Learning outcomes:
 * Know how to assign a variable in R.
 * Understand what a vector is in R.
@@ -23,7 +24,7 @@ January 18th, 2022
 * Know the syntax for accessing a column of data as a vector.
 
 
-Before diving in, you might be wondering what's up with the weird syntax of this document. It's "R Markdown", which is a shorthand for creating formatted text in documents. One of the neat things about R Notebooks (like this document) is that you can "knit" it to an output like PDF or HTML. Once you run through all the code in this exercise, click the "Knit" button above, and take a look at the output. 
+Before diving in, you might be wondering what's up with the weird syntax of this document. It's "R Markdown", which is a shorthand for creating formatted text in documents. One of the neat things about R Notebooks (like this document) is that you can "knit" it to an output like PDF or HTML. Once you run through all the code in this exercise, click the "Knit" button above, and take a look at the output (this is part of the requirements for this assignment, as described in the README.md file). 
 
 
 ### Basic R code
@@ -82,14 +83,14 @@ Create a variable "numButterflies", set it equal to 500, and print it out:
 Vectors are a type of data structure in R, usually referring to an array of values. To create a vector, you use the "c" function:
 
 ```{r}
-myFirstVector<-c(1,2,3,4,5)
+myFirstVector<-c(4, 8, 5, 12, 1, 6)
 #print myFirstVector
 myFirstVector
 ```
 
 
 **YOUR TURN**  
-Create a vector named "observations", and have it contain the values 30, 20, 40, 15, and 50.
+Create a vector named "observations", and have it contain the values 27, 61, 48, 115, and 50. Display it to the screen.
 
 ```{r}
 #enter your code here
@@ -131,12 +132,24 @@ The documentation appears in the lower right window in the "help" tab.
 
 The internet in general is also an excellent source for getting help with R functions. Not only can you find examples and documentation on functions, but it's also a great way to determine what functions exist. 
 
+Say we're interested in calculating the standard deviation of a set of values (e.g. a vector). Surely R must have a function for this!
+So let's google "r calculate standard deviation", and see what we get. 
 
-include sd example
+It turns out the sd() is the R function for standard deviation. Let's use it to calculate the standard deviation of myFirstVector below:
+
+```{r}
+
+mfvSd<-sd(myFirstVector)
+
+mfvSd
+
+```
+
+
 
 **YOUR TURN**  
 Lets say you want to calculate the average of the vector "observations" you just created, but aren't sure how. Try googling "how do I calculate the average in R". Based on what you find, calculate the average of "observations", and print it to the screen:
-(share where people end up on google)
+
 
 ```{r}
 # hint: once you find the right function, you'll use "observations" as your argument
@@ -167,8 +180,6 @@ Each user on our RStudio Server instance has a home directory, where you can kee
 You should see a file called "monarchsArizona.csv". This is a data set exported from iNaturalist containing research-level Monarch butterly observations in Arizona during 2021 (source - iNaturalist export tool https://www.inaturalist.org/observations/export)
 
 Below, you can use the "read_csv" function to open a dataset, and assign it to a variable (in this case, "mmonarchsAz"):
-
-
 
 
 ```{r message = FALSE }
@@ -239,15 +250,10 @@ Use the Oregon butterly data set you loaded, and create a variable equal to the 
 ```
 
 
-Knitted pdf - flush out, be clear about deliverable. naming conventions! And add name at top. 
 
-assignment1-lastname.pdf
 
-Due date: midnight on Monday, January 24th 
+You've reached the end! Please refer to README.md for specifics on turning in this assignment. It must be submitted by midnight on Monday, January 24th, 2022.
 
-add readme on assignments, naming conventions, where to turn in,etc
-
-That's it for today. If you need any help, please feel free to reach out to Jeremy at jeremym@lclark.edu.
-
+Questions? Ask Jeremy at jeremym@lclark.edu.
 
 
