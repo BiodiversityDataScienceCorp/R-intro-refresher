@@ -1,15 +1,18 @@
 ---
 title: "R Introduction/Refresher, January 2022"
-subtitle: "Jeremy McWilliams" # change this!
-date: "January 18th, 2022"
+
 output:
   pdf_document: default
 
 ---
 
-add page header with info here
+Your Name Here  
+DSCI 245 / RNR 620  
+January 18th, 2022  
 
-# R Introduction/Refresher, January 2022
+
+
+## R Introduction/Refresher, January 2022
 
 ### Learning outcomes:
 * Know how to assign a variable in R.
@@ -53,7 +56,7 @@ x
 ```
 
 
-YOUR TURN:
+**YOUR TURN**  
 Now try creating a variable "y", set it equal to 7+9, and then print it out:
 ```{r}
 
@@ -62,7 +65,7 @@ Now try creating a variable "y", set it equal to 7+9, and then print it out:
 
 
 
-YOUR TURN:
+**YOUR TURN**  
 Create a variable "numButterflies", set it equal to 500, and print it out:
 
 ```{r}
@@ -84,7 +87,9 @@ myFirstVector<-c(1,2,3,4,5)
 myFirstVector
 ```
 
-Now it's your turn. Create a vector named "observations", and have it contain the values 30, 20, 40, 15, and 50.
+
+**YOUR TURN**  
+Create a vector named "observations", and have it contain the values 30, 20, 40, 15, and 50.
 
 ```{r}
 #enter your code here
@@ -108,7 +113,7 @@ sqrt(9)
 ```
 
 
-YOUR TURN:
+**YOUR TURN**  
 In the chunk below, create a variable 'z', set it equal to the square root of 90, and print it out:
 ```{r}
 
@@ -129,7 +134,7 @@ The internet in general is also an excellent source for getting help with R func
 
 include sd example
 
-YOUR TURN:
+**YOUR TURN**  
 Lets say you want to calculate the average of the vector "observations" you just created, but aren't sure how. Try googling "how do I calculate the average in R". Based on what you find, calculate the average of "observations", and print it to the screen:
 (share where people end up on google)
 
@@ -149,7 +154,7 @@ Lets say you want to calculate the average of the vector "observations" you just
 
 Before loading data, we're first going to load a library called the "tidyverse". We're doing this because we're about to use the "read_csv" function, which is only available once the tidyverse is loaded (we know this from googling). 
 
-```{r}
+```{r message = FALSE }
 library(tidyverse)
 ```
 
@@ -166,7 +171,7 @@ Below, you can use the "read_csv" function to open a dataset, and assign it to a
 
 
 
-```{r}
+```{r message = FALSE }
 # The "read_csv" function is part of the "readr" package, which is part of the tidyverse.
 monarchsAz<-read_csv("monarchsArizona.csv")
 monarchsAz
@@ -182,7 +187,7 @@ The following URL contains iNaturalist data of all research-grade butterfly obse
 https://docs.google.com/spreadsheets/d/1FeFA2Sp2MkXbMthNqxHKh1S3-BPEpkfIRFPob1pDFns/edit?usp=sharing
 
 
-YOUR TURN:
+**YOUR TURN**  
 Perform the following steps to load the data set into rstudio.cloud, and examine the data by assigning it to a variable and display it to the screen:
 
 * Visit https://docs.google.com/spreadsheets/d/1FeFA2Sp2MkXbMthNqxHKh1S3-BPEpkfIRFPob1pDFns/edit?usp=sharing
@@ -192,7 +197,7 @@ Perform the following steps to load the data set into rstudio.cloud, and examine
 * The file should now appear in your Files area. 
 * In the code chunk below, use the read_csv function to assign the data set to a variable, and then print the data to tbe screen (hint: prior to writing any code, you might consider renaming the file to something simple, by clicking the checkbok next to the file, and clicking 'Rename'):
 
-```{r}
+```{r message = FALSE }
 
 
 
@@ -223,8 +228,7 @@ numIdAg
 We just created a vector of data, which we could theoretically then use to do other calculations (mean, standard deviation, etc.)
 
 
-YOUR TURN:
-
+**YOUR TURN**  
 Use the Oregon butterly data set you loaded, and create a variable equal to the column "num_identification_disagreements". Display it to the screen.
 
 ```{r}
